@@ -24,4 +24,4 @@ iOS telecom self-service app allowing users to manage plans, payments, and accou
 
 ## Links
 
-[App Store](https://apps.apple.com) · [GitHub](https://github.com)
+[App Store](https://apps.apple.com/my/app/%D0%BC%D0%BE%D0%B9-beeline-kg/id842425573)
