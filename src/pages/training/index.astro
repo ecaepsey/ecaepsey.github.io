@@ -1,4 +1,6 @@
 ---
+const posts = await Astro.glob('./*.md');
+posts.sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date));
 ---
 
 <!DOCTYPE html>
@@ -23,7 +25,6 @@
         min-height: 100vh;
       }
 
-      /* ── profile header ── */
       .profile-header {
         background: linear-gradient(180deg, #0a1220 0%, #0d1520 100%);
         border-bottom: 1px solid #1a2a1a;
@@ -43,7 +44,7 @@
       .profile-header-name {
         font-size: 22px;
         font-weight: 700;
-        color: #ffffff;
+        color: #fff;
         letter-spacing: 0.04em;
         text-transform: uppercase;
         line-height: 1;
@@ -57,7 +58,6 @@
         text-transform: uppercase;
       }
 
-      /* ── nav ── */
       nav {
         background: linear-gradient(180deg, #0d1520 0%, #080e18 100%);
         border-bottom: 1px solid #1a2a1a;
@@ -82,19 +82,15 @@
       }
       .nav-tabs li a:hover {
         color: #80e080;
-        border-bottom-color: rgba(100, 220, 100, 0.35);
+        border-bottom-color: rgba(100,220,100,0.35);
       }
       .nav-tabs li.active a {
         color: #8fff6a;
         border-bottom-color: #8fff6a;
       }
 
-      /* ── page ── */
-      .page {
-        padding: 40px 32px;
-      }
+      .page { padding: 40px 32px; }
 
-      /* ── training log ── */
       .log-block {
         width: 480px;
         background: rgba(6, 12, 24, 0.82);
@@ -105,73 +101,38 @@
       .log-block h2 {
         font-size: 26px;
         font-weight: 700;
-        color: #ffffff;
-        margin-bottom: 4px;
-      }
-
-      .log-date {
-        font-size: 13px;
-        font-weight: 500;
-        color: #7a8a9a;
-        margin-bottom: 24px;
-        letter-spacing: 0.04em;
-      }
-
-      /* ── session entry ── */
-      .session {
-        border-left: 2px solid #2a4a2a;
-        padding-left: 16px;
+        color: #fff;
         margin-bottom: 20px;
       }
 
-      .session:last-child { margin-bottom: 0; }
+      .post-item {
+        display: block;
+        text-decoration: none;
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        transition: padding-left 0.15s;
+      }
+      .post-item:last-child { border-bottom: none; }
+      .post-item:hover { padding-left: 6px; }
 
-      .session-type {
+      .post-item-date {
         font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: #4db84d;
+        color: #7a8a9a;
+        letter-spacing: 0.08em;
         margin-bottom: 4px;
       }
 
-      .session-title {
-        font-size: 20px;
-        font-weight: 700;
-        color: #ffffff;
-        margin-bottom: 12px;
-        line-height: 1;
-      }
-
-      .session-stats {
-        display: flex;
-        gap: 24px;
-      }
-
-      .session-stat {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-      }
-
-      .session-stat-label {
-        font-size: 11px;
-        color: #7a8a9a;
-        letter-spacing: 0.04em;
-      }
-
-      .session-stat-value {
+      .post-item-title {
         font-size: 18px;
-        font-weight: 600;
-        color: #ffffff;
+        font-weight: 700;
+        color: #fff;
+        transition: color 0.15s;
       }
+      .post-item:hover .post-item-title { color: #8fff6a; }
 
-      .session-stat-value.blue { color: #4ab4ff; }
-
-      .divider {
-        height: 1px;
-        background: rgba(255,255,255,0.07);
-        margin: 20px 0;
+      .empty {
+        font-size: 15px;
+        color: #7a8a9a;
       }
     </style>
   </head>
@@ -195,42 +156,21 @@
     <div class="page">
       <div class="log-block">
         <h2>Training Log</h2>
-        <div class="log-date">February 28, 2026</div>
-
-        <!-- Session 1 -->
-        <div class="session">
-          <div class="session-type">🏊 Swimming</div>
-          <div class="session-title">Pool Swim</div>
-          <div class="session-stats">
-            <div class="session-stat">
-              <span class="session-stat-label">Distance</span>
-              <span class="session-stat-value blue">676 m</span>
-            </div>
-            <div class="session-stat">
-              <span class="session-stat-label">Time</span>
-              <span class="session-stat-value">25 min</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- Session 2 -->
-        <div class="session">
-          <div class="session-type">🚶 Walking</div>
-          <div class="session-title">Indoor Walk</div>
-          <div class="session-stats">
-            <div class="session-stat">
-              <span class="session-stat-label">Distance</span>
-              <span class="session-stat-value blue">5 km</span>
-            </div>
-            <div class="session-stat">
-              <span class="session-stat-label">Time</span>
-              <span class="session-stat-value">1 hr</span>
-            </div>
-          </div>
-        </div>
-
+        {posts.length === 0 ? (
+          <p class="empty">No entries yet.</p>
+        ) : (
+          posts.map(post => {
+            const date = new Date(post.frontmatter.date).toLocaleDateString('en-US', {
+              year: 'numeric', month: 'long', day: 'numeric'
+            });
+            return (
+              <a href={post.url} class="post-item">
+                <div class="post-item-date">{date}</div>
+                <div class="post-item-title">{post.frontmatter.title}</div>
+              </a>
+            );
+          })
+        )}
       </div>
     </div>
   </body>

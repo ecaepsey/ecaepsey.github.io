@@ -1,0 +1,210 @@
+---
+const { frontmatter } = Astro.props;
+
+const dateFormatted = new Date(frontmatter.date).toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric'
+});
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{frontmatter.title} — Damir Aushenov</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        background: #05080d url('/bg.jpeg') center center / cover no-repeat fixed;
+        font-family: 'Rajdhani', sans-serif;
+        min-height: 100vh;
+      }
+
+      .profile-header {
+        background: linear-gradient(180deg, #0a1220 0%, #0d1520 100%);
+        border-bottom: 1px solid #1a2a1a;
+        padding: 16px 32px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .profile-header img {
+        width: 56px;
+        height: 56px;
+        object-fit: cover;
+        object-position: center top;
+        border: 2px solid #3a5a3a;
+        display: block;
+      }
+      .profile-header-name {
+        font-size: 22px;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        line-height: 1;
+      }
+      .profile-header-title {
+        margin-top: 4px;
+        font-size: 13px;
+        font-weight: 500;
+        color: #4db84d;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      nav {
+        background: linear-gradient(180deg, #0d1520 0%, #080e18 100%);
+        border-bottom: 1px solid #1a2a1a;
+      }
+      .nav-tabs {
+        display: flex;
+        list-style: none;
+        padding: 0 32px;
+      }
+      .nav-tabs li a {
+        display: block;
+        padding: 18px 28px 16px;
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        color: #4db84d;
+        border-bottom: 3px solid transparent;
+        transition: color 0.15s, border-color 0.15s;
+        position: relative;
+        top: 1px;
+      }
+      .nav-tabs li a:hover {
+        color: #80e080;
+        border-bottom-color: rgba(100,220,100,0.35);
+      }
+      .nav-tabs li.active a {
+        color: #8fff6a;
+        border-bottom-color: #8fff6a;
+      }
+
+      .page {
+        padding: 40px 32px;
+      }
+
+      .post-block {
+        width: 520px;
+        background: rgba(6, 12, 24, 0.82);
+        border-top: 2px solid #8fff6a;
+        padding: 22px 24px 32px;
+      }
+
+      .back-link {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 600;
+        color: #4db84d;
+        text-decoration: none;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+      }
+      .back-link:hover { color: #8fff6a; }
+
+      .post-title {
+        font-size: 26px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+
+      .post-date {
+        font-size: 13px;
+        color: #7a8a9a;
+        margin-bottom: 24px;
+        letter-spacing: 0.04em;
+      }
+
+      /* ── markdown content styles ── */
+      .content h2 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #8fff6a;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin: 20px 0 10px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid rgba(143,255,106,0.15);
+      }
+      .content h2:first-child { margin-top: 0; }
+
+      .content p {
+        font-size: 15px;
+        color: #c0cad4;
+        line-height: 1.7;
+        margin-bottom: 10px;
+      }
+
+      .content ul {
+        list-style: none;
+        margin-bottom: 10px;
+      }
+      .content ul li {
+        font-size: 15px;
+        color: #c0cad4;
+        padding: 3px 0 3px 16px;
+        position: relative;
+      }
+      .content ul li::before {
+        content: '▸';
+        position: absolute;
+        left: 0;
+        color: #4db84d;
+        font-size: 11px;
+      }
+
+      .content strong {
+        color: #fff;
+        font-weight: 700;
+      }
+
+      .content hr {
+        border: none;
+        border-top: 1px solid rgba(255,255,255,0.07);
+        margin: 18px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="profile-header">
+      <img src="/avatar.jpg" alt="Damir Aushenov" />
+      <div>
+        <div class="profile-header-name">Damir Aushenov</div>
+        <div class="profile-header-title">iOS Developer</div>
+      </div>
+    </div>
+
+    <nav>
+      <ul class="nav-tabs">
+        <li><a href="/">Main</a></li>
+        <li><a href="/works">My Works</a></li>
+        <li class="active"><a href="/training">My Training</a></li>
+      </ul>
+    </nav>
+
+    <div class="page">
+      <div class="post-block">
+        <a href="/training" class="back-link">← Training Log</a>
+        <div class="post-title">{frontmatter.title}</div>
+        <div class="post-date">{dateFormatted}</div>
+        <div class="content">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
