@@ -1,0 +1,194 @@
+---
+const posts = await Astro.glob('./*.md');
+posts.sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date));
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>My Works — Damir Aushenov</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        background: #05080d url('/bg.jpeg') center center / cover no-repeat fixed;
+        font-family: 'Rajdhani', sans-serif;
+        min-height: 100vh;
+      }
+
+      .profile-header {
+        background: linear-gradient(180deg, #0a1220 0%, #0d1520 100%);
+        border-bottom: 1px solid #1a2a1a;
+        padding: 16px 32px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .profile-header img {
+        width: 56px;
+        height: 56px;
+        object-fit: cover;
+        object-position: center top;
+        border: 2px solid #3a5a3a;
+        display: block;
+      }
+      .profile-header-name {
+        font-size: 22px;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        line-height: 1;
+      }
+      .profile-header-title {
+        margin-top: 4px;
+        font-size: 13px;
+        font-weight: 500;
+        color: #4db84d;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      nav {
+        background: linear-gradient(180deg, #0d1520 0%, #080e18 100%);
+        border-bottom: 1px solid #1a2a1a;
+      }
+      .nav-tabs {
+        display: flex;
+        list-style: none;
+        padding: 0 32px;
+      }
+      .nav-tabs li a {
+        display: block;
+        padding: 18px 28px 16px;
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        color: #4db84d;
+        border-bottom: 3px solid transparent;
+        transition: color 0.15s, border-color 0.15s;
+        position: relative;
+        top: 1px;
+      }
+      .nav-tabs li a:hover {
+        color: #80e080;
+        border-bottom-color: rgba(100,220,100,0.35);
+      }
+      .nav-tabs li.active a {
+        color: #8fff6a;
+        border-bottom-color: #8fff6a;
+      }
+
+      .page { padding: 40px 32px; }
+
+      .works-block {
+        width: 520px;
+        background: rgba(6, 12, 24, 0.82);
+        border-top: 2px solid #4ab4ff;
+        padding: 22px 24px 28px;
+      }
+
+      .works-block h2 {
+        font-size: 26px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 20px;
+      }
+
+      .work-item {
+        display: block;
+        text-decoration: none;
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        transition: padding-left 0.15s;
+      }
+      .work-item:last-child { border-bottom: none; }
+      .work-item:hover { padding-left: 6px; }
+
+      .work-item-tags {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 6px;
+        flex-wrap: wrap;
+      }
+      .work-item-tag {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #4ab4ff;
+        background: rgba(74,180,255,0.08);
+        border: 1px solid rgba(74,180,255,0.2);
+        padding: 1px 8px;
+        clip-path: polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%);
+      }
+
+      .work-item-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+        transition: color 0.15s;
+        margin-bottom: 4px;
+      }
+      .work-item:hover .work-item-title { color: #4ab4ff; }
+
+      .work-item-desc {
+        font-size: 13px;
+        color: #7a8a9a;
+        line-height: 1.5;
+      }
+
+      .empty { font-size: 15px; color: #7a8a9a; }
+    </style>
+  </head>
+  <body>
+    <div class="profile-header">
+      <img src="/avatar.jpg" alt="Damir Aushenov" />
+      <div>
+        <div class="profile-header-name">Damir Aushenov</div>
+        <div class="profile-header-title">iOS Developer</div>
+      </div>
+    </div>
+
+    <nav>
+      <ul class="nav-tabs">
+        <li><a href="/">Main</a></li>
+        <li class="active"><a href="/works">My Works</a></li>
+        <li><a href="/training">My Training</a></li>
+      </ul>
+    </nav>
+
+    <div class="page">
+      <div class="works-block">
+        <h2>My Works</h2>
+        {posts.length === 0 ? (
+          <p class="empty">No projects yet.</p>
+        ) : (
+          posts.map(post => (
+            <a href={post.url} class="work-item">
+              <div class="work-item-tags">
+                {post.frontmatter.tags && post.frontmatter.tags.map((tag: string) => (
+                  <span class="work-item-tag">{tag}</span>
+                ))}
+              </div>
+              <div class="work-item-title">{post.frontmatter.title}</div>
+              {post.frontmatter.description && (
+                <div class="work-item-desc">{post.frontmatter.description}</div>
+              )}
+            </a>
+          ))
+        )}
+      </div>
+    </div>
+  </body>
+</html>
