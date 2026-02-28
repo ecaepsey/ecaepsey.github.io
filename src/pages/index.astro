@@ -1,0 +1,210 @@
+---
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Damir Aushenov</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        background: #05080d url('/bg.jpeg') center center / cover no-repeat fixed;
+        font-family: 'Rajdhani', sans-serif;
+        min-height: 100vh;
+      }
+
+      /* ── profile header ── */
+      .profile-header {
+        background: linear-gradient(180deg, #0a1220 0%, #0d1520 100%);
+        border-bottom: 1px solid #1a2a1a;
+        padding: 16px 32px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .profile-header img {
+        width: 56px;
+        height: 56px;
+        object-fit: cover;
+        object-position: center top;
+        border: 2px solid #3a5a3a;
+        display: block;
+      }
+
+      .profile-header-name {
+        font-size: 22px;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        line-height: 1;
+      }
+
+      .profile-header-title {
+        margin-top: 4px;
+        font-size: 13px;
+        font-weight: 500;
+        color: #4db84d;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      /* ── nav ── */
+      nav {
+        background: linear-gradient(180deg, #0d1520 0%, #080e18 100%);
+        border-bottom: 1px solid #1a2a1a;
+      }
+
+      .nav-tabs {
+        display: flex;
+        list-style: none;
+        padding: 0 32px;
+      }
+
+      .nav-tabs li a {
+        display: block;
+        padding: 18px 28px 16px;
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        color: #4db84d;
+        border-bottom: 3px solid transparent;
+        transition: color 0.15s, border-color 0.15s;
+        position: relative;
+        top: 1px;
+      }
+
+      .nav-tabs li a:hover {
+        color: #80e080;
+        border-bottom-color: rgba(100, 220, 100, 0.35);
+      }
+
+      .nav-tabs li.active a {
+        color: #8fff6a;
+        border-bottom-color: #8fff6a;
+      }
+
+      /* ── page body ── */
+      .page {
+        padding: 40px 32px;
+      }
+
+      /* ── about block ── */
+      .about-block {
+        width: 380px;
+        background: rgba(6, 12, 24, 0.82);
+        border-top: 2px solid #8fff6a;
+        padding: 22px 24px 28px;
+      }
+
+      .about-block h2 {
+        font-size: 26px;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 12px;
+        letter-spacing: 0.01em;
+      }
+
+      .about-block p {
+        font-size: 15px;
+        font-weight: 400;
+        color: #d0d8e4;
+        line-height: 1.65;
+        margin-bottom: 24px;
+      }
+
+      /* ── stat grid ── */
+      .stat-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px 12px;
+      }
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .stat-label {
+        font-size: 12px;
+        font-weight: 500;
+        color: #7a8a9a;
+        letter-spacing: 0.03em;
+      }
+
+      .stat-value {
+        font-size: 20px;
+        font-weight: 600;
+        color: #ffffff;
+        letter-spacing: 0.01em;
+      }
+
+      .stat-value.green { color: #8fff6a; }
+      .stat-value.blue  { color: #4ab4ff; }
+    </style>
+  </head>
+  <body>
+    <div class="profile-header">
+      <img src="/avatar.jpg" alt="Damir Aushenov" />
+      <div>
+        <div class="profile-header-name">Damir Aushenov</div>
+        <div class="profile-header-title">iOS Developer</div>
+      </div>
+    </div>
+
+    <nav>
+      <ul class="nav-tabs">
+        <li class="active"><a href="/">Main</a></li>
+        <li><a href="/works">My Works</a></li>
+        <li><a href="/training">My Training</a></li>
+      </ul>
+    </nav>
+
+    <div class="page">
+      <div class="about-block">
+        <h2>About Me</h2>
+        <p>
+          iOS developer based in Bishkek. I build apps in Swift and SwiftUI,
+          and when I'm not coding I'm running roads or lifting in the gym.
+          Here I write about development, training, and things I'm building.
+        </p>
+
+        <div class="stat-grid">
+          <div class="stat">
+            <span class="stat-label">Started Coding</span>
+            <span class="stat-value">2016</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Location</span>
+            <span class="stat-value">🇰🇬 Bishkek</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Experience</span>
+            <span class="stat-value">10 yrs</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Main Language</span>
+            <span class="stat-value blue">Swift</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Specialty</span>
+            <span class="stat-value green">iOS / SwiftUI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
