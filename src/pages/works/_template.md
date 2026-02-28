@@ -1,20 +1,20 @@
 ---
 layout: ../../layouts/WorksLayout.astro
-title: "Your App Name"
-description: "One line description shown on the index."
-date: "2026-01-01"
-tags: [Swift, SwiftUI]
+title: "My beeline"
+description: "iOS telecom self-service app allowing users to manage plans, payments, and account services."
+date: "2022-01-01"
+tags: [Swift, UIKit]
 ---
 
 ## Overview
 
-What does the app do? Write a short description here.
+iOS telecom self-service app allowing users to manage plans, payments, and account services.
 
 ## Features
 
-- Feature one
-- Feature two
-- Feature three
+- Account & Tariff Management
+- Payments & Balance Top-Up
+- Real-Time Usage & Notifications
 
 ## Tech Stack
 
