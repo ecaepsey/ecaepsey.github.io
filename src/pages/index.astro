@@ -7,204 +7,702 @@
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
-    <title>Damir Aushenov</title>
+    <title>Damir Aushenov — iOS Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&display=swap"
       rel="stylesheet"
     />
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
       body {
-        background: #05080d url('/bg.jpeg') center center / cover no-repeat fixed;
-        font-family: 'Rajdhani', sans-serif;
+        background: #ffffff;
+        font-family: 'Inter', sans-serif;
+        color: #111111;
         min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
       }
 
-      /* ── profile header ── */
-      .profile-header {
-        background: linear-gradient(180deg, #0a1220 0%, #0d1520 100%);
-        border-bottom: 1px solid #1a2a1a;
-        padding: 16px 32px;
+      /* ── NAVBAR ── */
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid #f0f0f0;
+        padding: 0 48px;
+        height: 68px;
         display: flex;
         align-items: center;
-        gap: 16px;
+        justify-content: space-between;
       }
 
-      .profile-header img {
-        width: 56px;
-        height: 56px;
+      .navbar-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      .navbar-avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
         object-fit: cover;
         object-position: center top;
-        border: 2px solid #3a5a3a;
-        display: block;
+        border: 2px solid #e8e8e8;
       }
 
-      .profile-header-name {
-        font-size: 22px;
-        font-weight: 700;
-        color: #ffffff;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        line-height: 1;
-      }
-
-      .profile-header-title {
-        margin-top: 4px;
-        font-size: 13px;
-        font-weight: 500;
-        color: #4db84d;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-      }
-
-      /* ── nav ── */
-      nav {
-        background: linear-gradient(180deg, #0d1520 0%, #080e18 100%);
-        border-bottom: 1px solid #1a2a1a;
-      }
-
-      .nav-tabs {
-        display: flex;
-        list-style: none;
-        padding: 0 32px;
-      }
-
-      .nav-tabs li a {
-        display: block;
-        padding: 18px 28px 16px;
+      .navbar-name {
         font-size: 17px;
         font-weight: 600;
-        letter-spacing: 0.04em;
-        text-decoration: none;
-        color: #4db84d;
-        border-bottom: 3px solid transparent;
-        transition: color 0.15s, border-color 0.15s;
-        position: relative;
-        top: 1px;
+        color: #111111;
+        letter-spacing: -0.02em;
       }
 
-      .nav-tabs li a:hover {
-        color: #80e080;
-        border-bottom-color: rgba(100, 220, 100, 0.35);
+      .navbar-links {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        list-style: none;
       }
 
-      .nav-tabs li.active a {
-        color: #8fff6a;
-        border-bottom-color: #8fff6a;
-      }
-
-      /* ── page body ── */
-      .page {
-        padding: 40px 32px;
-      }
-
-      /* ── about block ── */
-      .about-block {
-        width: 380px;
-        background: rgba(6, 12, 24, 0.82);
-        border-top: 2px solid #8fff6a;
-        padding: 22px 24px 28px;
-      }
-
-      .about-block h2 {
-        font-size: 26px;
-        font-weight: 700;
-        color: #ffffff;
-        margin-bottom: 12px;
-        letter-spacing: 0.01em;
-      }
-
-      .about-block p {
+      .navbar-links a {
+        display: block;
+        padding: 7px 16px;
         font-size: 15px;
-        font-weight: 400;
-        color: #d0d8e4;
-        line-height: 1.65;
+        font-weight: 500;
+        color: #555555;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: color 0.15s, background 0.15s;
+      }
+
+      .navbar-links a:hover {
+        color: #111111;
+        background: #f5f5f5;
+      }
+
+      .btn-hello {
+        background: #111111;
+        color: #ffffff;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 22px;
+        font-size: 15px;
+        font-weight: 600;
+        font-family: inherit;
+        cursor: pointer;
+        transition: background 0.15s, transform 0.1s;
+        letter-spacing: -0.01em;
+        flex-shrink: 0;
+      }
+
+      .btn-hello:hover {
+        background: #333333;
+      }
+
+      .btn-hello:active {
+        transform: scale(0.97);
+      }
+
+      /* ── HERO ── */
+      .hero {
+        padding: 100px 48px 80px;
+        max-width: 780px;
+      }
+
+      .hero-tag {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 600;
+        color: #888888;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+
+      .hero h1 {
+        font-size: clamp(40px, 6vw, 64px);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.08;
+        color: #111111;
         margin-bottom: 24px;
       }
 
-      /* ── stat grid ── */
-      .stat-grid {
+      .hero h1 span {
+        color: #888888;
+      }
+
+      .hero p {
+        font-size: 18px;
+        font-weight: 400;
+        color: #555555;
+        line-height: 1.7;
+        max-width: 560px;
+      }
+
+      /* ── SECTION BASE ── */
+      .section {
+        padding: 80px 48px;
+        border-top: 1px solid #f0f0f0;
+      }
+
+      .section-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #aaaaaa;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+
+      .section-title {
+        font-size: 32px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: #111111;
+        margin-bottom: 48px;
+      }
+
+      /* ── PROJECTS ── */
+
+      /* — hero project (first, full-width, 60vh) — */
+      .project-hero {
+        min-height: 60vh;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 18px 12px;
+        border-radius: 20px;
+        background: #111111;
+        overflow: hidden;
+        position: relative;
+        margin-bottom: 16px;
       }
 
-      .stat {
+      .project-hero-info {
         display: flex;
         flex-direction: column;
-        gap: 2px;
+        justify-content: center;
+        padding: 60px 56px;
       }
 
-      .stat-label {
+      .project-hero-screens {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 16px;
+        padding: 48px 40px 0;
+        overflow: hidden;
+      }
+
+      .project-hero-screens img {
+        height: 420px;
+        width: auto;
+        border-radius: 32px;
+        box-shadow: 0 32px 64px rgba(0, 0, 0, 0.5);
+        flex-shrink: 0;
+        object-fit: cover;
+      }
+
+      .project-hero-screens img:nth-child(1) {
+        transform: rotate(-4deg) translateY(20px);
+      }
+
+      .project-hero-screens img:nth-child(2) {
+        transform: translateY(0px);
+        z-index: 1;
+      }
+
+      .project-hero-screens img:nth-child(3) {
+        transform: rotate(4deg) translateY(20px);
+      }
+
+      .project-hero-inner {
+        text-align: center;
+        padding: 60px 40px;
+        max-width: 560px;
+      }
+
+      /* — split projects — */
+      .projects-split {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .project-split-row {
+        display: grid;
+        min-height: 340px;
+        border-radius: 20px;
+        overflow: hidden;
+        background: #f5f5f5;
+      }
+
+      /* odd row: 30% info | 70% visual */
+      .project-split-row:nth-child(odd) {
+        grid-template-columns: 3fr 7fr;
+      }
+
+      /* even row: 70% visual | 30% info */
+      .project-split-row:nth-child(even) {
+        grid-template-columns: 7fr 3fr;
+      }
+
+      .project-split-row:nth-child(even) .project-info {
+        order: 2;
+      }
+
+      .project-split-row:nth-child(even) .project-visual {
+        order: 1;
+      }
+
+      .project-info {
+        padding: 40px 36px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: #f5f5f5;
+      }
+
+      /* dark info panel when paired with dark visual */
+      .project-split-row:has(.project-visual--screens) .project-info {
+        background: #161616;
+      }
+
+      .project-split-row:has(.project-visual--screens) .project-info .project-number { color: #555555; }
+      .project-split-row:has(.project-visual--screens) .project-info .project-name { color: #ffffff; }
+      .project-split-row:has(.project-visual--screens) .project-info .project-desc { color: #888888; }
+      .project-split-row:has(.project-visual--screens) .project-info .project-tag { background: #222222; color: #666666; }
+
+      .project-visual {
+        background: #e8e8e8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 72px;
+      }
+
+      /* shared card text */
+      .project-number {
+        font-size: 12px;
+        font-weight: 600;
+        color: #aaaaaa;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      .project-name {
+        font-size: 26px;
+        font-weight: 700;
+        color: #111111;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        margin-bottom: 12px;
+      }
+
+      .project-desc {
+        font-size: 15px;
+        color: #666666;
+        line-height: 1.65;
+      }
+
+      .project-tag {
+        display: inline-block;
+        margin-top: 20px;
         font-size: 12px;
         font-weight: 500;
-        color: #7a8a9a;
-        letter-spacing: 0.03em;
+        color: #555555;
+        background: #e8e8e8;
+        border-radius: 6px;
+        padding: 5px 12px;
       }
 
-      .stat-value {
-        font-size: 20px;
+      /* screens inside split visual */
+      .project-visual--screens {
+        background: #111111;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 12px;
+        padding: 40px 32px 0;
+        overflow: hidden;
+      }
+
+      .project-visual--screens img {
+        height: 300px;
+        width: auto;
+        border-radius: 28px;
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .project-visual--screens img:nth-child(1) {
+        transform: rotate(-4deg) translateY(16px);
+      }
+
+      .project-visual--screens img:nth-child(2) {
+        transform: translateY(0);
+        z-index: 1;
+      }
+
+      .project-visual--screens img:nth-child(3) {
+        transform: rotate(4deg) translateY(16px);
+      }
+
+      /* hero-specific overrides (dark bg) */
+      .project-hero-info .project-number { color: #666666; }
+      .project-hero-info .project-name { font-size: clamp(32px, 3vw, 48px); color: #ffffff; margin-bottom: 16px; }
+      .project-hero-info .project-desc { font-size: 16px; color: #aaaaaa; }
+      .project-hero-info .project-tag { background: #222222; color: #888888; }
+
+
+      /* ── SKILLS ── */
+      .skills-groups {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 40px;
+      }
+
+      .skill-group-title {
+        font-size: 12px;
         font-weight: 600;
-        color: #ffffff;
-        letter-spacing: 0.01em;
+        color: #aaaaaa;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
       }
 
-      .stat-value.green { color: #8fff6a; }
-      .stat-value.blue  { color: #4ab4ff; }
+      .skill-items {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .skill-item {
+        font-size: 16px;
+        font-weight: 500;
+        color: #333333;
+      }
+
+      /* ── CONTACT ── */
+      #contact {
+        background: #fafafa;
+      }
+
+      .contact-inner {
+        max-width: 560px;
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 32px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .form-field label {
+        font-size: 13px;
+        font-weight: 500;
+        color: #555555;
+      }
+
+      .form-field input,
+      .form-field textarea {
+        font-family: inherit;
+        font-size: 15px;
+        color: #111111;
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 12px 16px;
+        outline: none;
+        transition: border-color 0.15s, box-shadow 0.15s;
+        resize: none;
+      }
+
+      .form-field input:focus,
+      .form-field textarea:focus {
+        border-color: #111111;
+        box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.06);
+      }
+
+      .form-field textarea {
+        height: 120px;
+      }
+
+      .btn-submit {
+        align-self: flex-start;
+        background: #111111;
+        color: #ffffff;
+        border: none;
+        border-radius: 10px;
+        padding: 13px 28px;
+        font-size: 15px;
+        font-weight: 600;
+        font-family: inherit;
+        cursor: pointer;
+        transition: background 0.15s, transform 0.1s;
+        letter-spacing: -0.01em;
+      }
+
+      .btn-submit:hover { background: #333333; }
+      .btn-submit:active { transform: scale(0.97); }
+
+      /* ── FOOTER ── */
+      footer {
+        border-top: 1px solid #f0f0f0;
+        padding: 32px 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .footer-copy {
+        font-size: 14px;
+        color: #aaaaaa;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 24px;
+      }
+
+      .footer-links a {
+        font-size: 14px;
+        font-weight: 500;
+        color: #aaaaaa;
+        text-decoration: none;
+        transition: color 0.15s;
+      }
+
+      .footer-links a:hover { color: #111111; }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 768px) {
+        .project-hero { grid-template-columns: 1fr; }
+        .project-hero-screens { padding: 32px 24px 0; }
+        .project-hero-screens img { height: 260px; border-radius: 20px; }
+        .project-split-row,
+        .project-split-row:nth-child(odd),
+        .project-split-row:nth-child(even) {
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+        .project-split-row:nth-child(even) .project-info,
+        .project-split-row:nth-child(even) .project-visual {
+          order: unset;
+        }
+        .project-visual { min-height: 160px; font-size: 48px; }
+      }
+
+      @media (max-width: 640px) {
+        .navbar { padding: 0 20px; }
+        .navbar-links { display: none; }
+        .hero { padding: 60px 20px 60px; }
+        .section { padding: 60px 20px; }
+        footer { padding: 24px 20px; flex-direction: column; gap: 12px; }
+        .form-row { grid-template-columns: 1fr; }
+      }
     </style>
   </head>
   <body>
-    <div class="profile-header">
-      <img src="/avatar.jpg" alt="Damir Aushenov" />
-      <div>
-        <div class="profile-header-name">Damir Aushenov</div>
-        <div class="profile-header-title">iOS Developer</div>
+
+    <!-- ── NAVBAR ── -->
+    <header class="navbar">
+      <a href="/" class="navbar-brand">
+        <img class="navbar-avatar" src="/avatar.jpg" alt="Damir Aushenov" />
+        <span class="navbar-name">Damir Aushenov</span>
+      </a>
+
+      <nav>
+        <ul class="navbar-links">
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+        </ul>
+      </nav>
+
+      <button
+        class="btn-hello"
+        onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })"
+      >
+        Say Hello
+      </button>
+    </header>
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+      <span class="hero-tag">iOS Developer · Bishkek</span>
+      <h1>I build apps<br /><span>people love.</span></h1>
+      <p>
+        10 years crafting iOS experiences with Swift and SwiftUI.
+        I care about performance, clean architecture, and the little details
+        that make an app feel great.
+      </p>
+    </section>
+
+    <!-- ── PROJECTS ── -->
+    <section class="section" id="projects">
+      <p class="section-label">Work</p>
+      <h2 class="section-title">Projects</h2>
+
+      <!-- First: full-width hero project -->
+      <div class="project-hero">
+        <div class="project-hero-info">
+          <div class="project-number">01</div>
+          <div class="project-name">My Beeline</div>
+          <div class="project-desc">
+            Telecom self-care app for Beeline Kyrgyzstan. Account management,
+            payments, tariff switching, and customer support — all in one place.
+          </div>
+          <span class="project-tag">Swift · UIKit</span>
+        </div>
+        <div class="project-hero-screens">
+          <img src="/beeline-1.png" alt="My Beeline — Home screen" />
+          <img src="/beeline-2.png" alt="My Beeline — Service detail" />
+          <img src="/beeline-3.png" alt="My Beeline — Bonus screen" />
+        </div>
       </div>
-    </div>
 
-    <nav>
-      <ul class="nav-tabs">
-        <li class="active"><a href="/">Main</a></li>
-        <li><a href="/works">My Works</a></li>
-        <li><a href="/training">My Training</a></li>
-      </ul>
-    </nav>
+      <!-- Remaining: alternating 30/70 split rows -->
+      <div class="projects-split">
 
-    <div class="page">
-      <div class="about-block">
-        <h2>About Me</h2>
-        <p>
-          iOS developer based in Bishkek. I build apps in Swift and SwiftUI,
-          and when I'm not coding I'm running roads or lifting in the gym.
-          Here I write about development, training, and things I'm building.
-        </p>
+        <!-- Row 1: 30% info | 70% visual -->
+        <div class="project-split-row">
+          <div class="project-info">
+            <div class="project-number">02</div>
+            <div class="project-name">Health Face</div>
+            <div class="project-desc">
+              Daily face check-in app. Take a photo, log sleep and hydration,
+              and track how your skin changes over time with side-by-side comparisons.
+            </div>
+            <span class="project-tag">SwiftUI · CoreML</span>
+          </div>
+          <div class="project-visual project-visual--screens">
+            <img src="/healthface-1.jpg" alt="Health Face — Dashboard" />
+            <img src="/healthface-2.png" alt="Health Face — Comparison" />
+            <img src="/healthface-3.png" alt="Health Face — History" />
+          </div>
+        </div>
 
-        <div class="stat-grid">
-          <div class="stat">
-            <span class="stat-label">Started Coding</span>
-            <span class="stat-value">2016</span>
+        <!-- Row 2: 70% visual | 30% info -->
+        <div class="project-split-row">
+          <div class="project-info">
+            <div class="project-number">03</div>
+            <div class="project-name">AgriSmart</div>
+            <div class="project-desc">
+              Farm workforce tracking app. Timesheets, rosters, and payslips
+              for agricultural teams — built for kiwifruit and apple orchards in New Zealand.
+            </div>
+            <span class="project-tag">SwiftUI · UIKit</span>
           </div>
-          <div class="stat">
-            <span class="stat-label">Location</span>
-            <span class="stat-value">🇰🇬 Bishkek</span>
+          <div class="project-visual project-visual--screens">
+            <img src="/agrismart-1.png" alt="AgriSmart — Team timesheets" />
+            <img src="/agrismart-2.png" alt="AgriSmart — My time" />
+            <img src="/agrismart-3.png" alt="AgriSmart — Today view" />
           </div>
-          <div class="stat">
-            <span class="stat-label">Experience</span>
-            <span class="stat-value">10 yrs</span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ── SKILLS ── -->
+    <section class="section" id="skills">
+      <p class="section-label">Expertise</p>
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-groups">
+        <div>
+          <div class="skill-group-title">Languages</div>
+          <div class="skill-items">
+            <span class="skill-item">Swift</span>
+            <span class="skill-item">Objective-C</span>
+            <span class="skill-item">Python</span>
           </div>
-          <div class="stat">
-            <span class="stat-label">Main Language</span>
-            <span class="stat-value blue">Swift</span>
+        </div>
+        <div>
+          <div class="skill-group-title">Frameworks</div>
+          <div class="skill-items">
+            <span class="skill-item">SwiftUI</span>
+            <span class="skill-item">UIKit</span>
+            <span class="skill-item">Combine</span>
+            <span class="skill-item">HealthKit</span>
           </div>
-          <div class="stat">
-            <span class="stat-label">Specialty</span>
-            <span class="stat-value green">iOS / SwiftUI</span>
+        </div>
+        <div>
+          <div class="skill-group-title">Tools</div>
+          <div class="skill-items">
+            <span class="skill-item">Xcode</span>
+            <span class="skill-item">Instruments</span>
+            <span class="skill-item">Figma</span>
+            <span class="skill-item">Git</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-title">Practices</div>
+          <div class="skill-items">
+            <span class="skill-item">TCA / MVVM</span>
+            <span class="skill-item">Unit & UI Testing</span>
+            <span class="skill-item">CI / CD</span>
+            <span class="skill-item">App Store Review</span>
           </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- ── CONTACT ── -->
+    <section class="section" id="contact">
+      <div class="contact-inner">
+        <p class="section-label">Get in touch</p>
+        <h2 class="section-title">Say Hello</h2>
+        <form class="contact-form" onsubmit="return false;">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input id="name" type="text" placeholder="Your name" />
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="you@example.com" />
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Tell me about your project…"></textarea>
+          </div>
+          <button class="btn-submit" type="submit">Send message</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+      <span class="footer-copy">© 2026 Damir Aushenov</span>
+      <div class="footer-links">
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:damir@example.com">Email</a>
+      </div>
+    </footer>
+
   </body>
 </html>
