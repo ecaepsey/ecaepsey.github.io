@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#111111"/>
+
+  <!-- Top accent line -->
+  <rect x="0" y="0" width="1200" height="4" fill="#ffffff"/>
+
+  <!-- Avatar circle -->
+  <clipPath id="avatar-clip">
+    <circle cx="160" cy="315" r="100"/>
+  </clipPath>
+  <circle cx="160" cy="315" r="104" fill="#222222"/>
+  <image href="https://ecaepsey.github.io/avatar.jpg" x="60" y="215" width="200" height="200" clip-path="url(#avatar-clip)" preserveAspectRatio="xMidYMid slice"/>
+
+  <!-- Name -->
+  <text x="320" y="280" font-family="Georgia, serif" font-size="72" font-weight="700" fill="#ffffff" letter-spacing="-2">Damir Aushenov</text>
+
+  <!-- Divider -->
+  <rect x="320" y="308" width="600" height="1" fill="#333333"/>
+
+  <!-- Title -->
+  <text x="320" y="370" font-family="Georgia, serif" font-size="36" fill="#888888">iOS Developer · Bishkek</text>
+
+  <!-- Tags -->
+  <rect x="320" y="410" width="110" height="40" rx="8" fill="#222222"/>
+  <text x="375" y="436" font-family="Georgia, serif" font-size="22" fill="#888888" text-anchor="middle">Swift</text>
+
+  <rect x="444" y="410" width="130" height="40" rx="8" fill="#222222"/>
+  <text x="509" y="436" font-family="Georgia, serif" font-size="22" fill="#888888" text-anchor="middle">SwiftUI</text>
+
+  <rect x="588" y="410" width="98" height="40" rx="8" fill="#222222"/>
+  <text x="637" y="436" font-family="Georgia, serif" font-size="22" fill="#888888" text-anchor="middle">iOS</text>
+
+  <!-- URL -->
+  <text x="320" y="560" font-family="Georgia, serif" font-size="26" fill="#444444">ecaepsey.github.io</text>
+</svg>
