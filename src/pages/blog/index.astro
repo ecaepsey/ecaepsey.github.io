@@ -1,0 +1,257 @@
+---
+const posts = await Astro.glob('./*.md');
+posts.sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date));
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog — Damir Aushenov</title>
+    <meta name="description" content="Articles about iOS development, Swift, SwiftUI and mobile engineering by Damir Aushenov." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        background: #ffffff;
+        font-family: 'Inter', sans-serif;
+        color: #111111;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── NAVBAR ── */
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid #f0f0f0;
+        padding: 0 48px;
+        height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .navbar-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      .navbar-avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center top;
+        border: 2px solid #e8e8e8;
+      }
+
+      .navbar-name {
+        font-size: 17px;
+        font-weight: 600;
+        color: #111111;
+        letter-spacing: -0.02em;
+      }
+
+      .navbar-links {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        list-style: none;
+      }
+
+      .navbar-links a {
+        display: block;
+        padding: 7px 16px;
+        font-size: 15px;
+        font-weight: 500;
+        color: #555555;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: color 0.15s, background 0.15s;
+      }
+
+      .navbar-links a:hover,
+      .navbar-links a.active {
+        color: #111111;
+        background: #f5f5f5;
+      }
+
+      /* ── PAGE ── */
+      .page {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 72px 48px 100px;
+      }
+
+      .page-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #aaaaaa;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+
+      .page-title {
+        font-size: 36px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: #111111;
+        margin-bottom: 56px;
+      }
+
+      /* ── POST LIST ── */
+      .post-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .post-item {
+        padding: 36px 0;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .post-item:first-child {
+        border-top: 1px solid #f0f0f0;
+      }
+
+      .post-date {
+        font-size: 13px;
+        font-weight: 500;
+        color: #aaaaaa;
+        margin-bottom: 10px;
+      }
+
+      .post-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: #111111;
+        letter-spacing: -0.02em;
+        line-height: 1.3;
+        margin-bottom: 12px;
+      }
+
+      .post-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 14px;
+      }
+
+      .badge {
+        font-size: 12px;
+        font-weight: 500;
+        color: #555555;
+        background: #f5f5f5;
+        border-radius: 6px;
+        padding: 4px 10px;
+      }
+
+      .post-desc {
+        font-size: 15px;
+        color: #666666;
+        line-height: 1.65;
+        margin-bottom: 20px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .btn-read {
+        display: inline-block;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 600;
+        color: #111111;
+        text-decoration: none;
+        border: 1.5px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 8px 18px;
+        transition: border-color 0.15s, background 0.15s;
+      }
+
+      .btn-read:hover {
+        border-color: #111111;
+        background: #f5f5f5;
+      }
+
+      .empty {
+        font-size: 16px;
+        color: #aaaaaa;
+        padding: 40px 0;
+      }
+
+      @media (max-width: 640px) {
+        .navbar { padding: 0 20px; }
+        .navbar-links { display: none; }
+        .page { padding: 48px 20px 80px; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <header class="navbar">
+      <a href="/" class="navbar-brand">
+        <img class="navbar-avatar" src="/avatar.jpg" alt="Damir Aushenov" />
+        <span class="navbar-name">Damir Aushenov</span>
+      </a>
+      <nav>
+        <ul class="navbar-links">
+          <li><a href="/#projects">Projects</a></li>
+          <li><a href="/#skills">Skills</a></li>
+          <li><a href="/blog" class="active">Blog</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="page">
+      <p class="page-label">Writing</p>
+      <h1 class="page-title">Recent Articles</h1>
+
+      {posts.length === 0 ? (
+        <p class="empty">No posts yet — check back soon.</p>
+      ) : (
+        <div class="post-list">
+          {posts.map(post => {
+            const date = new Date(post.frontmatter.date).toLocaleDateString('en-US', {
+              year: 'numeric', month: 'long', day: 'numeric'
+            });
+            const badges = post.frontmatter.tags ?? [];
+            return (
+              <div class="post-item">
+                <div class="post-date">{date}</div>
+                <div class="post-title">{post.frontmatter.title}</div>
+                {badges.length > 0 && (
+                  <div class="post-badges">
+                    {badges.map((tag: string) => <span class="badge">{tag}</span>)}
+                  </div>
+                )}
+                <p class="post-desc">{post.frontmatter.description}</p>
+                <a href={post.url} class="btn-read">Read post →</a>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+
+  </body>
+</html>
