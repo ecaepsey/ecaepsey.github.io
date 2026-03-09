@@ -725,23 +725,57 @@
       <div class="contact-inner">
         <p class="section-label">Get in touch</p>
         <h2 class="section-title">Say Hello</h2>
-        <form class="contact-form" onsubmit="return false;">
+        <form class="contact-form" id="contact-form">
+          <input type="hidden" name="access_key" value="0030f30b-c5dd-412f-bf14-b2d5dd521eb2" />
           <div class="form-row">
             <div class="form-field">
               <label for="name">Name</label>
-              <input id="name" type="text" placeholder="Your name" />
+              <input id="name" name="name" type="text" placeholder="Your name" required />
             </div>
             <div class="form-field">
               <label for="email">Email</label>
-              <input id="email" type="email" placeholder="you@example.com" />
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
             </div>
           </div>
           <div class="form-field">
             <label for="message">Message</label>
-            <textarea id="message" placeholder="Tell me about your project…"></textarea>
+            <textarea id="message" name="message" placeholder="Tell me about your project…" required></textarea>
           </div>
-          <button class="btn-submit" type="submit">Send message</button>
+          <button class="btn-submit" type="submit" id="submit-btn">Send message</button>
+          <p id="form-status" style="display:none; font-size:14px; margin-top:4px;"></p>
         </form>
+
+        <script>
+          const form = document.getElementById('contact-form');
+          const btn = document.getElementById('submit-btn');
+          const status = document.getElementById('form-status');
+
+          form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            btn.disabled = true;
+            btn.textContent = 'Sending…';
+
+            const res = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+              body: JSON.stringify(Object.fromEntries(new FormData(form))),
+            });
+            const data = await res.json();
+
+            if (data.success) {
+              status.textContent = 'Message sent! I\'ll get back to you soon.';
+              status.style.color = '#4caf50';
+              form.reset();
+            } else {
+              status.textContent = 'Something went wrong. Please try again.';
+              status.style.color = '#e53935';
+            }
+
+            status.style.display = 'block';
+            btn.disabled = false;
+            btn.textContent = 'Send message';
+          });
+        </script>
       </div>
     </section>
 
